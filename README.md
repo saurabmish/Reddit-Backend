@@ -1,9 +1,13 @@
 [![saurabmish](https://circleci.com/gh/saurabmish/Reddit-Backend.svg?style=shield)](https://circleci.com/gh/saurabmish/Reddit-Backend)
 [![codecov](https://codecov.io/gh/saurabmish/Reddit-Backend/branch/master/graph/badge.svg?token=M7L0AOGKGY)](https://codecov.io/gh/saurabmish/Reddit-Backend)
 
-# Reddit-Backend
+# Reddit Backend
 
 Revisiting [CPSC 449 group project][1] taken in Spring 2020
+
+Flask microservices for create, read, update, and delete (CRUD) operations.
+
+Implemented with test-driven development approach.
 
 **What's new this time?**
 
