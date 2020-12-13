@@ -9,7 +9,6 @@ jobs:
       - run:
           name: setup environment
           command: |
-            export PYTHONPATH=$PWD
             python --version
             python -m venv reddit-backend
             source reddit-backend/bin/activate
