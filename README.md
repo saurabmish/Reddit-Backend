@@ -1,4 +1,5 @@
-[![saurabmish](https://circleci.com/gh/saurabmish/Reddit-Backend.svg?style=svg)](https://circleci.com/gh/saurabmish/Reddit-Backend)
+[![saurabmish](https://circleci.com/gh/saurabmish/Reddit-Backend.svg?style=shield)](https://circleci.com/gh/saurabmish/Reddit-Backend)
+[![codecov](https://codecov.io/gh/saurabmish/Reddit-Backend/branch/master/graph/badge.svg?token=M7L0AOGKGY)](https://codecov.io/gh/saurabmish/Reddit-Backend)
 
 # Reddit-Backend
 
