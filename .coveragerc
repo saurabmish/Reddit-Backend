@@ -1,5 +1,7 @@
 [run]
-omit = reddit-backend/*
+omit =
+  reddit-backend/*
+  */site-packages/*
 data_file = tests/coverage/.coverage
 
 [html]
