@@ -1,6 +1,6 @@
 version: 2
 docker:
-  - image: circleci/python:3.9.1
+  - image: cimg/python:3.9
 jobs:
   build:
     steps:
@@ -14,6 +14,4 @@ jobs:
             pip install --upgrade pip
             pip install --requirement requirements.txt
             export PYTHONPATH=$PWD
-          name: Project Tests
-          command: |
             pytest --cov
