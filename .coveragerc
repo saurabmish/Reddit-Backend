@@ -1,0 +1,9 @@
+[run]
+omit = reddit-backend/*
+data_file = tests/coverage/.coverage
+
+[html]
+directory = tests/coverage/html_report/
+
+[xml]
+output = tests/coverage/coverage.xml
