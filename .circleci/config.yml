@@ -3,22 +3,21 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.9
-        environment:
-          PYTHONPATH: $PWD
 
     steps:
       - checkout
       - run:
           name: setup environment
           command: |
+            export PYTHONPATH=$PWD
             python --version
             python -m venv reddit-backend
             source reddit-backend/bin/activate
-            pip install --upgrade pip
 
       - run:
           name: setup project
           command: |
+            pip install --upgrade pip
             echo $PYTHONPATH
             pip install --requirement requirements.txt
 
