@@ -17,7 +17,8 @@ jobs:
           name: setup project
           command: |
             pip install --upgrade pip
-            echo $PYTHONPATH
+            echo $HOME
+            echo "Hello World"
             pip install --requirement requirements.txt
 
       - run:
