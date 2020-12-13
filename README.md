@@ -1,3 +1,5 @@
+[![saurabmish](https://circleci.com/gh/saurabmish/Reddit-Backend.svg?style=svg)](https://circleci.com/gh/saurabmish/Reddit-Backend)
+
 # Reddit-Backend
 
 Revisiting [CPSC 449 group project][1] taken in Spring 2020
