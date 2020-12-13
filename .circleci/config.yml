@@ -3,17 +3,27 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.9
+
     steps:
       - checkout
       - run:
-          name: Python and Virtual Environment
+          name: setup environment
           command: |
             python --version
             python -m venv reddit-backend
             source reddit-backend/bin/activate
             pip install --upgrade pip
+
+      - run:
+          name: setup project
+          command:
+            echo $PYTHONPATH
             pip install --requirement requirements.txt
-            export PYTHONPATH=$PWD
+          environment:
+            PYTHONPATH: $PWD
+
+      - run:
+          name: run tests and coverage
             pytest --cov -v
             coverage report -m
             coverage xml
