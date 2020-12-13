@@ -24,6 +24,7 @@ jobs:
       - run:
           name: run tests and coverage
           command: |
+            export PYTHONPATH=$PWD
             pytest --cov -v
             coverage report -m
             coverage xml
