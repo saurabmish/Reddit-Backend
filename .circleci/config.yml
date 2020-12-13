@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.9
+        environment:
+          PYTHONPATH: $PWD
 
     steps:
       - checkout
@@ -19,8 +21,6 @@ jobs:
           command: |
             echo $PYTHONPATH
             pip install --requirement requirements.txt
-          environment:
-            PYTHONPATH: $PWD
 
       - run:
           name: run tests and coverage
