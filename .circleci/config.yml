@@ -14,4 +14,7 @@ jobs:
             pip install --upgrade pip
             pip install --requirement requirements.txt
             export PYTHONPATH=$PWD
-            pytest --cov
+            pytest --cov -v
+            coverage report -m
+            coverage xml
+            bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
