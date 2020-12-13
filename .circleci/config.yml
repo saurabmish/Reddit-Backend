@@ -1,7 +1,8 @@
+version: 2
+docker:
+  - image: circleci/python:3.9.1
 jobs:
   build:
-    docker:
-      - image: cimg/python:3.9.1
     steps:
       - checkout
       - run:
@@ -11,8 +12,8 @@ jobs:
             python -m venv reddit-backend
             source reddit-backend/bin/activate
             pip install --upgrade pip
-            export PYTHONPATH=$PWD
-          name: Project
-          command: |
             pip install --requirement requirements.txt
+            export PYTHONPATH=$PWD
+          name: Project Tests
+          command: |
             pytest --cov
