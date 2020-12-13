@@ -16,7 +16,7 @@ jobs:
 
       - run:
           name: setup project
-          command:
+          command: |
             echo $PYTHONPATH
             pip install --requirement requirements.txt
           environment:
@@ -24,6 +24,7 @@ jobs:
 
       - run:
           name: run tests and coverage
+          command: |
             pytest --cov -v
             coverage report -m
             coverage xml
