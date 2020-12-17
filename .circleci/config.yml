@@ -13,17 +13,6 @@ jobs:
             python -m venv reddit-backend
             source reddit-backend/bin/activate
 
-  setup:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      - run:
-          name: setup project
-          command: |
-            pip install --upgrade pip
-            pip install --requirement requirements.txt
-
   test:
     docker:
       - image: circleci/python:3.9
@@ -33,6 +22,8 @@ jobs:
           name: run tests and coverage
           command: |
             export PYTHONPATH=$PWD
+            pip install --upgrade pip
+            pip install --requirement requirements.txt
             pytest --cov -v
             coverage report -m
             coverage xml
@@ -40,8 +31,7 @@ jobs:
 
 workflows:
   version: 2
-  build_setup_test:
+  build_and_test:
     jobs:
       - build
-      - setup
       - test
