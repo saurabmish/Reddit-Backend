@@ -14,7 +14,7 @@ Implemented with test-driven development approach.
   + CI / CD pipelines using [CircleCI][2]
   + Source code and test coverage integration
   + Postgres database instead of sqlite
-  + No Flask blueprints, focus on clearly modulated OOP
+  + Better application design
   + Segregated unit, functional, and load testing
 
 
