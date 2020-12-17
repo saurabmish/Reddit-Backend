@@ -1,24 +1,34 @@
 version: 2
+
 jobs:
   build:
     docker:
       - image: circleci/python:3.9
-
     steps:
       - checkout
       - run:
-          name: setup environment
+          name: initiate environment
           command: |
             python --version
             python -m venv reddit-backend
             source reddit-backend/bin/activate
 
+  setup:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
       - run:
           name: setup project
           command: |
             pip install --upgrade pip
             pip install --requirement requirements.txt
 
+  test:
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
       - run:
           name: run tests and coverage
           command: |
@@ -27,3 +37,11 @@ jobs:
             coverage report -m
             coverage xml
             bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
+
+workflows:
+  version: 2
+  build_setup_test:
+    jobs:
+      - build
+      - setup
+      - test
