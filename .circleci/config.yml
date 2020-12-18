@@ -1,5 +1,10 @@
 version: 2
 
+parameters:
+  workingdir:
+    type: string
+    default: "~/main"
+
 jobs:
 
   build:
@@ -10,6 +15,7 @@ jobs:
       - run:
           name: initiate environment
           command: |
+            echo "$(pwd) == << pipeline.parameters.workingdir >>"
             python --version
             python -m venv reddit-backend
             source reddit-backend/bin/activate
@@ -22,6 +28,7 @@ jobs:
       - run:
           name: run tests and coverage
           command: |
+            echo "$(pwd) == << pipeline.parameters.workingdir >>"
             pip install --upgrade pip
             pip install --requirement requirements.txt
             pytest --cov -v
