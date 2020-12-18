@@ -23,8 +23,6 @@ jobs:
   test:
     docker:
       - image: circleci/python:3.9
-      - environment:
-          PYTHONPATH: workingdir
     steps:
       - checkout
       - run:
@@ -37,6 +35,8 @@ jobs:
             coverage report -m
             coverage xml
             bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
+          environment:
+            PYTHONPATH: workingdir
 
 workflows:
   version: 2
