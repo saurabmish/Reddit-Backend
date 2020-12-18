@@ -28,16 +28,15 @@ jobs:
       - run:
           name: run tests and coverage
           command: |
-            $(pwd) == << pipeline.parameters.workingdir >>
-            echo "$(pwd)"
+            echo "$(pwd) == << pipeline.parameters.workingdir >>"
             pip install --upgrade pip
             pip install --requirement requirements.txt
             pytest --cov -v
             coverage report -m
             coverage xml
-            bash <(curl -s https://codecov.io/bash) -f $(pwd)/tests/coverage/coverage.xml
+            bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
           environment:
-            PYTHONPATH: workingdir
+            PYTHONPATH: $CIRCLE_WORKING_DIRECTORY
 
 workflows:
   version: 2
