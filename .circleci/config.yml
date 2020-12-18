@@ -28,8 +28,8 @@ jobs:
       - run:
           name: run tests and coverage
           command: |
-            echo "$(pwd) == << pipeline.parameters.workingdir >>"
-            echo << pipeline.parameters.workingdir >>
+            $(pwd) == << pipeline.parameters.workingdir >>
+            echo $(pwd)
             pip install --upgrade pip
             pip install --requirement requirements.txt
             pytest --cov -v
