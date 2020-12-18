@@ -23,8 +23,8 @@ jobs:
   test:
     docker:
       - image: circleci/python:3.9
-      environment:
-        PYTHONPATH: workingdir
+      - environment:
+          PYTHONPATH: workingdir
     steps:
       - checkout
       - run:
