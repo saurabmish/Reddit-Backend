@@ -23,13 +23,12 @@ jobs:
   test:
     docker:
       - image: circleci/python:3.9
-      - environment:
-          PYTHONPATH: $PWD
     steps:
       - checkout
       - run:
           name: run tests and coverage
           command: |
+            export PYTHONPATH=$PWD
             pip install --upgrade pip
             pip install --requirement requirements.txt
             pytest --cov -v
