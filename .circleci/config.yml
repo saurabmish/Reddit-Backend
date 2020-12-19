@@ -35,7 +35,7 @@ jobs:
             coverage xml
             bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
           environment:
-            export PYTHONPATH=$PWD
+            PYTHONPATH=$PWD
 
 
 workflows:
