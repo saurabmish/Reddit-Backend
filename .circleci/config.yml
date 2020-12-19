@@ -28,13 +28,14 @@ jobs:
       - run:
           name: run tests and coverage
           command: |
-            export PYTHONPATH=$PWD
             pip install --upgrade pip
             pip install --requirement requirements.txt
             pytest --cov -v
             coverage report -m
             coverage xml
             bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
+          environment:
+            export PYTHONPATH=$PWD
 
 
 workflows:
