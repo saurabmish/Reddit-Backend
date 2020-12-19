@@ -23,8 +23,8 @@ jobs:
   test:
     docker:
       - image: circleci/python:3.9
-      environment:
-        PYTHONPATH: $PWD
+      - environment:
+          PYTHONPATH: $PWD
     steps:
       - checkout
       - run:
