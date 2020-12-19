@@ -23,6 +23,8 @@ jobs:
   test:
     docker:
       - image: circleci/python:3.9
+      environment:
+        PYTHONPATH: $PWD
     steps:
       - checkout
       - run:
@@ -34,8 +36,6 @@ jobs:
             coverage report -m
             coverage xml
             bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
-          environment:
-            PYTHONPATH: echo "$(pwd)"
 
 
 workflows:
