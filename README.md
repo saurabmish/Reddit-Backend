@@ -15,6 +15,7 @@ Implemented with test-driven development approach.
   + Source code and test coverage integration
   + Postgres database instead of sqlite
   + Better application design
+  + Project milestones using git tags
   + Segregated unit, functional, and load testing
 
 ## Setup
