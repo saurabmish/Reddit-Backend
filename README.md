@@ -58,7 +58,7 @@ Implemented with test-driven development approach.
 
     `flask run`
 
-  + Navigate to API testing directory:
+  + Open a new terminal and navigate to API testing directory:
 
     `cd tests/unit`
 
