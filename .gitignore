@@ -1,3 +1,4 @@
+*.DS_Store
 reddit-backend/
 __pycache__/
 .pytest_cache/
