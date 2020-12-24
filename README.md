@@ -60,7 +60,7 @@ Implemented with test-driven development approach.
 
   + Navigate to API testing directory:
 
-    `cd tests/api`
+    `cd tests/unit`
 
   + Ensure that all scripts are executable:
 
