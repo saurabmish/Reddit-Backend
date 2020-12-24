@@ -42,7 +42,7 @@ Implemented with test-driven development approach.
 
     `export PYTHONPATH=$PWD`
 
-### Unit Testing
+### Integration Testing
 
   + Run test cases:
 
