@@ -17,7 +17,61 @@ Implemented with test-driven development approach.
   + Better application design
   + Segregated unit, functional, and load testing
 
+## Setup
 
+  + Navigate to the project's root directory
+
+  + Create a Python 3 virtual environment:
+
+    `python3 -m venv reddit-backend`
+
+  + Activate newly created virtual environment:
+
+    `source reddit-backend/bin/activate`
+
+  + Update *pip* package manager:
+
+    `pip install --upgrade pip`
+
+  + Install required packages in the virtual environment:
+
+    `pip install --requirement requirements.txt`
+
+  + Set `PYTHONPATH`:
+
+    `export PYTHONPATH=$PWD`
+
+### Unit Testing
+
+  + Run test cases:
+
+    `pytest -v`
+
+  + Check source code **and** test coverage:
+
+    `pytest -v --cov`
+
+### API Testing
+
+  + Execute application:
+
+    `flask run`
+
+  + Navigate to API testing directory:
+
+    `cd tests/api`
+
+  + Ensure that all scripts are executable:
+
+    `chmod +x *.sh`
+
+  + Create users:
+
+    `./create_user_accounts.sh`
+
+  + Get all users:
+
+    `./get_all_users.sh`
 
 [1]: https://github.com/sean-maclane/cpsc-449-group-c-project
 [2]: https://circleci.com/
