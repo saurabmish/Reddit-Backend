@@ -5,11 +5,9 @@ def test_response_type(client):
     response = client.get('/')
     assert response.content_type == 'application/json'
 
-
 def test_response_status(client):
     response = client.get('/')
     assert response.status_code == 200
-
 
 def test_index(client):
     response = client.get('/')
