@@ -45,7 +45,7 @@ def update_location(name):
                 "location": user["location"],
                 "gender": user["gender"]
             }
-            return jsonify(updated_user), 201
+            return jsonify(updated_user), 205
 
 
 @app.route('/api/v1/user/delete/<string:name>', methods=['DELETE'])
