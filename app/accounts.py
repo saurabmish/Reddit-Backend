@@ -53,4 +53,5 @@ def delete_user(name):
     for index, user in enumerate(users):
         if user["name"] == name:
             users.pop(index)
-            return jsonify(users), 202
+            return {'message': "User deleted successfully!", 'status': 207}
+    return {'message': 'User not found ...', 'status': 406}
