@@ -74,5 +74,14 @@ Implemented with test-driven development approach.
 
     `./get_all_users.sh`
 
+  + Update user location:
+
+    `./update_user_location.sh`
+
+  + Delete user:
+
+    `./delete_user.sh`
+
+
 [1]: https://github.com/sean-maclane/cpsc-449-group-c-project
 [2]: https://circleci.com/
