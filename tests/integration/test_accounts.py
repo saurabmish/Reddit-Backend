@@ -123,6 +123,19 @@ def test_update_user_location_gender(client):
     assert "F" in data["gender"]
 
 
-def test_delete_user_status(client):
-    """TODO."""
-    pass
+def test_delete_user_status_and_message(client):
+    response = client.delete('/api/v1/user/delete/Jennifer')
+    data = json.loads(response.get_data(as_text=True))
+    assert data["status"] == 207  and 'User deleted successfully' in data["message"]
+
+
+def test_delete_user_not_found_status(client):
+    response = client.delete('/api/v1/user/delete/Saurabh')
+    data = json.loads(response.get_data(as_text=True))
+    assert data['status'] == 406
+
+
+def test_delete_user_not_found_message(client):
+    response = client.delete('/api/v1/user/delete/Saurabh')
+    data = json.loads(response.get_data(as_text=True))
+    assert 'User not found' in data['message']
