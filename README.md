@@ -5,13 +5,14 @@
 
 Revisiting [CPSC 449 group project][1] taken in Spring 2020
 
-Flask microservices for create, read, update, and delete (CRUD) operations.
+**About**
 
-Implemented with test-driven development approach.
+This project is about building microservices for a web application. Each microservice emulates a core functionality of Reddit. Since this project has no front-end, there are comprehensove automation test suites to check the functionality of the application.
 
 **What's new this time?**
 
   + CI / CD pipelines using [CircleCI][2]
+  + Application containerized with [Docker][3]
   + Source code and test coverage integration
   + Postgres database instead of sqlite
   + Better application design
@@ -74,6 +75,10 @@ Implemented with test-driven development approach.
 
     `./get_all_users.sh`
 
+  + Get user:
+
+    `./get_user.sh`
+
   + Update user location:
 
     `./update_user_location.sh`
@@ -84,4 +89,5 @@ Implemented with test-driven development approach.
 
 
 [1]: https://github.com/sean-maclane/cpsc-449-group-c-project
-[2]: https://circleci.com/
+[2]: https://circleci.com/product/
+[3]: https://www.docker.com/why-docker
