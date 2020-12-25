@@ -7,7 +7,7 @@ Revisiting [CPSC 449 group project][1] taken in Spring 2020
 
 **About**
 
-This project is about building microservices for a web application. Each microservice emulates a core functionality of Reddit. Since this project has no front-end, there are comprehensove automation test suites to check the functionality of the application.
+This project is about building microservices for a web application. Each microservice emulates a core functionality of Reddit. Since this project has no front-end, there are comprehensive automation test suites to check every functionality of the application.
 
 **What's new this time?**
 
