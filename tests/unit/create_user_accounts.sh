@@ -1,4 +1,9 @@
-curl --verbose --include \
+echo "####    CREATING 4 USERS ...    ####"
+echo ""
+
+
+curl --request POST \
+    --verbose --include \
     --header 'Content-Type: application/json' 'Accept: application/json' \
     --data '
         {
@@ -9,7 +14,8 @@ curl --verbose --include \
     http://127.0.0.1:6500/api/v1/user/create
 
 
-curl --verbose --include \
+curl --request POST \
+    --verbose --include \
     --header 'Content-Type: application/json' 'Accept: application/json' \
     --data '
         {
@@ -20,7 +26,8 @@ curl --verbose --include \
     http://127.0.0.1:6500/api/v1/user/create
 
 
-curl --verbose --include \
+curl --request POST \
+    --verbose --include \
     --header 'Content-Type: application/json' 'Accept: application/json' \
     --data '
         {
@@ -31,7 +38,8 @@ curl --verbose --include \
     http://127.0.0.1:6500/api/v1/user/create
 
 
-curl --verbose --include \
+curl --request POST \
+    --verbose --include \
     --header 'Content-Type: application/json' 'Accept: application/json' \
     --data '
         {
@@ -40,3 +48,7 @@ curl --verbose --include \
             "gender": "F"
         }' \
     http://127.0.0.1:6500/api/v1/user/create
+
+
+echo ""
+echo "####    4 USERS CREATED SUCCESSFULLY!!    ####"
