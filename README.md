@@ -15,9 +15,9 @@ This project is about building microservices for a web application. Each microse
   + Application containerized with [Docker][3]
   + Source code and test coverage integration
   + Postgres database instead of sqlite
-  + Better application design
   + Project milestones using git tags
   + Segregated unit, functional, and load testing
+  + Better application design and comprehensive documentation
 
 ## Setup
 
