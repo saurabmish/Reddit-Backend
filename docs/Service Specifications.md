@@ -4,6 +4,7 @@
 
 Each registered user should have the following data associated:
 
+  + User ID
   + Username 
   + Email
   + Karma
@@ -22,6 +23,7 @@ The data for the user can be in the same database or different database as the o
 
 Each post should have the following data associated:
 
+  + Post ID
   + Title
   + Text
   + Community (subreddit)
