@@ -1,3 +1,4 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/1ce53ea9c1a7c71726c7/maintainability)](https://codeclimate.com/github/saurabmish/Reddit-Backend/maintainability)
 [![saurabmish](https://circleci.com/gh/saurabmish/Reddit-Backend.svg?style=shield)](https://circleci.com/gh/saurabmish/Reddit-Backend)
 [![codecov](https://codecov.io/gh/saurabmish/Reddit-Backend/branch/master/graph/badge.svg?token=M7L0AOGKGY)](https://codecov.io/gh/saurabmish/Reddit-Backend)
 
@@ -15,8 +16,8 @@ This project is about building microservices for a web application. Each microse
   + Application containerized with [Docker][3]
   + Source code and test coverage integration
   + Postgres database instead of sqlite
-  + Project milestones using git tags
-  + Segregated unit, functional, and load testing
+  + Project [milestones][4] using git tags
+  + Segregated unit, integration, functional, and load testing
   + Better application design and comprehensive documentation
 
 ## Setup
@@ -91,3 +92,4 @@ This project is about building microservices for a web application. Each microse
 [1]: https://github.com/sean-maclane/cpsc-449-group-c-project
 [2]: https://circleci.com/product/
 [3]: https://www.docker.com/why-docker
+[4]: https://github.com/saurabmish/Reddit-Backend/releases
