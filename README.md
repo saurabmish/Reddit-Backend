@@ -14,11 +14,12 @@ This project is about building microservices for a web application. Each microse
 
   + CI / CD pipelines using [CircleCI][2]
   + Application containerized with [Docker][3]
-  + Source code and test coverage integration
-  + Postgres database instead of sqlite
-  + Project [milestones][4] using git tags
+  + Source code and test [coverage][4] integration
+  + [Postgres][5] database instead of sqlite
+  + Significantly increased [maintainability][6]
   + Segregated unit, integration, functional, and load testing
   + Better application design and comprehensive documentation
+  + Project [milestones][7] using git tags
 
 ## Setup
 
@@ -92,4 +93,7 @@ This project is about building microservices for a web application. Each microse
 [1]: https://github.com/sean-maclane/cpsc-449-group-c-project
 [2]: https://circleci.com/product/
 [3]: https://www.docker.com/why-docker
-[4]: https://github.com/saurabmish/Reddit-Backend/releases
+[4]: https://coverage.readthedocs.io/en/coverage-5.3.1/
+[5]: https://www.postgresql.org/
+[6]: https://codeclimate.com/github/saurabmish/Reddit-Backend
+[7]: https://github.com/saurabmish/Reddit-Backend/releases
