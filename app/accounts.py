@@ -3,55 +3,74 @@ from app import app
 
 users = []
 
-@app.route('/api/v1/user/create', methods=['POST'])
+@app.route('/api/v2/user/create', methods=['POST'])
 def signup():
     data = request.get_json()
-    print(data)
-    name = data["name"]
-    location = data["location"]
-    gender = data["gender"]
-    
+    userid = data["userid"]
+    username = data["username"]
+    email = data["email"]
+    karma = data["karma"]
+
     new_user = {
-        "name":  name,
-        "location":  location,
-        "gender":  gender
+        "userid": userid,
+        "username":  username,
+        "email":  email,
+        "karma":  karma
     }
     users.append(new_user)
-
-    return {'message': "User created successfully!", 'status': 201}
-
-
-@app.route('/api/v1/user/get-all', methods=['GET'])
-def get_all():
-    return jsonify(users), 201
+    return {'message': "User created successfully!", 'status': 202}
 
 
-@app.route('/api/v1/user/get/<string:name>', methods=['GET'])
-def get_user(name):
+@app.route('/api/v2/user/<string:username>/karma/increment', methods=['PATCH'])
+def upvote_user(username):
     for user in users:
-        if user["name"] == name:
-            return jsonify(user), 201    
-    return {'message': 'User not found ...', 'status': 406}
+        if user["username"] == username:
+            user["karma"] += 1
+            updated_user = {
+                "userid": user["userid"],
+                "username":  user["username"],
+                "email": user["email"],
+                "karma": user["karma"]
+            }
+            return jsonify(updated_user), 202
+    return {'message': 'User karma not incremented, user not found ...', 'status': 402}
 
 
-@app.route('/api/v1/user/update-location/<string:name>', methods=['PATCH'])
-def update_location(name):
+@app.route('/api/v2/user/<string:username>/karma/decrement', methods=['PATCH'])
+def downvote_user(username):
+    for user in users:
+        if user["username"] == username:
+            user["karma"] -= 1
+            updated_user = {
+                "userid": user["userid"],
+                "username":  user["username"],
+                "email": user["email"],
+                "karma": user["karma"]
+            }
+            return jsonify(updated_user), 202
+    return {'message': 'User karma not decremented, user not found ...', 'status': 402}
+
+
+@app.route('/api/v2/user/update/<string:username>', methods=['PATCH'])
+def update_email(username):
     data = request.get_json()
     for user in users:
-        if user["name"] == name:
-            user["location"] = data["location"]
+        if user["username"] == username:
+            user["email"] = data["email"]
             updated_user = {
-                "name":  user["name"],
-                "location": user["location"],
-                "gender": user["gender"]
+                "userid": user["userid"],
+                "username":  user["username"],
+                "email": user["email"],
+                "karma": user["karma"]
             }
-            return jsonify(updated_user), 205
+            return jsonify(updated_user), 202
+    return {'message': 'Email not updated, user not found ...', 'status': 402}
 
 
-@app.route('/api/v1/user/delete/<string:name>', methods=['DELETE'])
-def delete_user(name):
+@app.route('/api/v2/user/delete/<string:username>', methods=['DELETE'])
+def deactivate(username):
     for index, user in enumerate(users):
-        if user["name"] == name:
+        if user["username"] == username:
             users.pop(index)
-            return {'message': "User deleted successfully!", 'status': 207}
-    return {'message': 'User not found ...', 'status': 406}
+            return {'message': "User deleted successfully!", 'status': 202}
+    return {'message': 'User not deactivated, user not found ...', 'status': 402}
