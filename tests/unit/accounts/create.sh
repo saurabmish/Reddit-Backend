@@ -9,7 +9,7 @@ curl --request POST \
         {
             "userid": 1,
             "username": "Adam",
-            "email": "New York",
+            "email": "adam@gmail.com",
             "karma": 1
         }' \
     http://127.0.0.1:6500/api/v2/user/create
@@ -22,7 +22,7 @@ curl --request POST \
         {
             "userid": 2,
             "username": "Jennifer",
-            "email": "Anaheim",
+            "email": "jennifer@gmail.com",
             "karma": 1
         }' \
     http://127.0.0.1:6500/api/v2/user/create
@@ -35,7 +35,7 @@ curl --request POST \
         {
             "userid": 3,
             "username": "Jason",
-            "email": "Mission Viejo",
+            "email": "jason@gmail.com",
             "karma": 1
         }' \
     http://127.0.0.1:6500/api/v2/user/create
@@ -48,7 +48,7 @@ curl --request POST \
         {
             "userid": 4,
             "username": "Hannah",
-            "email": "Fullerton",
+            "email": "hannah@gmail.com",
             "karma": 1
         }' \
     http://127.0.0.1:6500/api/v2/user/create
