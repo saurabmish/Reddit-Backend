@@ -2,140 +2,84 @@ from flask import json
 
 
 def test_user_signup_message(client):
-    url = '/api/v1/user/create'
+    url = '/api/v2/user/create'
     user = {
-        "name": "Hannah",
-        "location": "Fullerton",
-        "gender": "F"
+        "userid": 1,
+        "username": "Adam",
+        "email": "adam@gmail.com",
+        "karma": 1
     }
-    response = client.post(url, data=json.dumps(user), 
+    response = client.post(url, data=json.dumps(user),
                            content_type='application/json')
     data = json.loads(response.get_data(as_text=True))
     assert "User created successfully" in data['message']
 
 
 def test_user_signup_status(client):
-    url = '/api/v1/user/create'
+    url = '/api/v2/user/create'
     user = {
-        "name": "Jennifer",
-        "location": "Anaheim",
-        "gender": "F"
+        "userid": 2,
+        "username": "Jennifer",
+        "email": "jennifer@gmail.com",
+        "karma": 1
     }
-    response = client.post(url, data=json.dumps(user), 
+    response = client.post(url, data=json.dumps(user),
                            content_type='application/json')
     data = json.loads(response.get_data(as_text=True))
-    assert 201 == data['status']
+    assert 202 == data['status']
+
+
+def test_update_user_email_status(client):
+    url = '/api/v2/user/update/Jennifer'
+    user_data = {
+        "userid": 2,
+        "username": "Jennifer",
+        "email": "jennifer_g@gmail.com",
+        "karma": 1
+    }
+    response = client.patch(url, data=json.dumps(user_data),
+                            content_type='application/json')
+    data = json.loads(response.get_data(as_text=True))
+    assert data['status'] == 202
+
+
+def test_update_user_email_message(client):
+    url = '/api/v2/user/update/Jennifer'
+    user_data = {
+        "userid": 2,
+        "username": "Jennifer",
+        "email": "jennifer_g@gmail.com",
+        "karma": 1
+    }
+    response = client.patch(url, data=json.dumps(user_data),
+                            content_type='application/json')
+    data = json.loads(response.get_data(as_text=True))
+    assert "Email updated successfully" in data['message']
+
+
+def test_delete_user_status_and_message(client):
+    response = client.delete('/api/v2/user/delete/Adam')
+    data = json.loads(response.get_data(as_text=True))
+    assert data["status"] == 202  and 'User deleted successfully' in data["message"]
+
+
+def test_delete_user_not_found_status(client):
+    response = client.delete('/api/v2/user/delete/Saurabh')
+    data = json.loads(response.get_data(as_text=True))
+    assert data['status'] == 402
+
+
+def test_delete_user_not_found_message(client):
+    response = client.delete('/api/v2/user/delete/Saurabh')
+    data = json.loads(response.get_data(as_text=True))
+    assert 'User not deactivated, user not found' in data['message']
 
 
 def test_get_all_users_content_type(client):
-    response = client.get('/api/v1/user/get-all')
+    response = client.get('/api/v2/users/all')
     assert response.content_type == 'application/json'
 
 
 def test_get_all_users_status(client):
-    response = client.get('/api/v1/user/get-all')
+    response = client.get('/api/v2/users/all')
     assert response.status_code == 201
-
-
-def test_get_user_name(client):
-    response = client.get('/api/v1/user/get/Jennifer')
-    data = json.loads(response.get_data(as_text=True))
-    assert "Jennifer" in data["name"]
-
-
-def test_get_user_location(client):
-    response = client.get('/api/v1/user/get/Jennifer')
-    data = json.loads(response.get_data(as_text=True))
-    assert "Anaheim" in data["location"]
-
-
-def test_get_user_gender(client):
-    response = client.get('/api/v1/user/get/Jennifer')
-    data = json.loads(response.get_data(as_text=True))
-    assert "F" in data["gender"]
-
-
-def test_get_user_status(client):
-    response = client.get('/api/v1/user/get/Jennifer')
-    assert response.status_code == 201
-
-
-def test_no_user_message(client):
-    response = client.get('/api/v1/user/get/Saurabh')
-    data = json.loads(response.get_data(as_text=True))
-    assert 'User not found' in data['message']
-
-
-def test_no_user_status(client):
-    response = client.get('/api/v1/user/get/Saurabh')
-    data = json.loads(response.get_data(as_text=True))
-    assert data['status'] == 406
-
-
-def test_update_user_location_status(client):
-    url = '/api/v1/user/update-location/Hannah'
-    user_data = {
-        "name": "Hannah",
-        "location": "Santa Ana",
-        "gender": "F"
-    }
-    response = client.patch(url, data=json.dumps(user_data),
-                            content_type='application/json')
-    assert response.status_code == 205
-
-
-def test_update_user_location_name(client):
-    url = '/api/v1/user/update-location/Hannah'
-    user_data = {
-        "name": "Hannah",
-        "location": "Santa Ana",
-        "gender": "F"
-    }
-    response = client.patch(url, data=json.dumps(user_data),
-                            content_type='application/json')
-    data = json.loads(response.get_data(as_text=True))
-    assert "Hannah" in data["name"]
-
-
-def test_update_user_location(client):
-    url = '/api/v1/user/update-location/Hannah'
-    user_data = {
-        "name": "Hannah",
-        "location": "Santa Ana",
-        "gender": "F"
-    }
-    response = client.patch(url, data=json.dumps(user_data),
-                            content_type='application/json')
-    data = json.loads(response.get_data(as_text=True))
-    assert "Santa Ana" in data["location"]
-
-
-def test_update_user_location_gender(client):
-    url = '/api/v1/user/update-location/Hannah'
-    user_data = {
-        "name": "Hannah",
-        "location": "Santa Ana",
-        "gender": "F"
-    }
-    response = client.patch(url, data=json.dumps(user_data),
-                            content_type='application/json')
-    data = json.loads(response.get_data(as_text=True))
-    assert "F" in data["gender"]
-
-
-def test_delete_user_status_and_message(client):
-    response = client.delete('/api/v1/user/delete/Jennifer')
-    data = json.loads(response.get_data(as_text=True))
-    assert data["status"] == 207  and 'User deleted successfully' in data["message"]
-
-
-def test_delete_user_not_found_status(client):
-    response = client.delete('/api/v1/user/delete/Saurabh')
-    data = json.loads(response.get_data(as_text=True))
-    assert data['status'] == 406
-
-
-def test_delete_user_not_found_message(client):
-    response = client.delete('/api/v1/user/delete/Saurabh')
-    data = json.loads(response.get_data(as_text=True))
-    assert 'User not found' in data['message']
