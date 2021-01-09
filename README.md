@@ -63,7 +63,7 @@ This project is about building microservices for a web application. Each microse
 
   + Open a new terminal and navigate to API testing directory:
 
-    `cd tests/unit`
+    `cd tests/unit/accounts`
 
   + Ensure that all scripts are executable:
 
@@ -71,23 +71,19 @@ This project is about building microservices for a web application. Each microse
 
   + Create users:
 
-    `./create_user_accounts.sh`
+    `./create.sh`
 
-  + Get all users:
+  + Update email:
 
-    `./get_all_users.sh`
+    `./update_email.sh`
 
-  + Get user:
+  + Modify karma:
 
-    `./get_user.sh`
-
-  + Update user location:
-
-    `./update_user_location.sh`
+    `./modify_karma.sh`
 
   + Delete user:
 
-    `./delete_user.sh`
+    `./delete.sh`
 
 
 [1]: https://github.com/sean-maclane/cpsc-449-group-c-project
