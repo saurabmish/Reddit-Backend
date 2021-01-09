@@ -74,3 +74,9 @@ def deactivate(username):
             users.pop(index)
             return {'message': "User deleted successfully!", 'status': 202}
     return {'message': 'User not deactivated, user not found ...', 'status': 402}
+
+
+@app.route('/api/v2/users/all', methods=['GET'])
+def get_all():
+    """Aids in testing."""
+    return jsonify(users), 201
