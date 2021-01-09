@@ -63,7 +63,7 @@ def update_email(username):
                 "email": user["email"],
                 "karma": user["karma"]
             }
-            return jsonify(updated_user), 202
+            return {'message': 'Email updated successfully!', 'status': 202}
     return {'message': 'Email not updated, user not found ...', 'status': 402}
 
 
