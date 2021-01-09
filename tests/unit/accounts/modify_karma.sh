@@ -1,4 +1,4 @@
-echo "####    UPDATING ADAM'S ADDRESS ...    ####"
+echo "####    INCREMENTING ADAM'S KARMA ...    ####"
 echo ""
 
 curl --request PATCH \
@@ -10,11 +10,12 @@ curl --request PATCH \
             "location": "Chicago",
             "gender": "M"
         }' \
-    http://127.0.0.1:6500/api/v1/user/update-location/Adam
+    http://127.0.0.1:6500/api/v2/user/update/Adam
 
-echo "####    ADAM'S ADDRESS UPDATED SUCCESSFULLY!!    ####"
+echo "####    ADAM'S KARMA INCREMENTED SUCCESSFULLY!!    ####"
 echo ""
-echo "####    UPDATING JASON'S ADDRESS ...    ####"
+echo ""
+echo "####    DECREMENTING JASON'S KARMA ...    ####"
 echo ""
 
 curl --request PATCH \
@@ -26,7 +27,7 @@ curl --request PATCH \
             "location": "Laguna Hills",
             "gender": "M"
         }' \
-    http://127.0.0.1:6500/api/v1/user/update-location/Jason
+    http://127.0.0.1:6500/api/v2/user/update/Jason
 
-echo "####    JASON'S ADDRESS UPDATED SUCCESSFULLY!!    ####"
+echo "####    JASON'S KARMA DECREMENTED SUCCESSFULLY!!    ####"
 echo ""

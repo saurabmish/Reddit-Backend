@@ -1,4 +1,4 @@
-echo "####    CREATING 4 USERS ...    ####"
+echo "####    POPULATING USERS ...    ####"
 echo ""
 
 
@@ -7,11 +7,12 @@ curl --request POST \
     --header 'Content-Type: application/json' 'Accept: application/json' \
     --data '
         {
-            "name": "Adam",
-            "location": "New York",
-            "gender": "M"
+            "userid": 1,
+            "username": "Adam",
+            "email": "New York",
+            "karma": 1
         }' \
-    http://127.0.0.1:6500/api/v1/user/create
+    http://127.0.0.1:6500/api/v2/user/create
 
 
 curl --request POST \
@@ -19,11 +20,12 @@ curl --request POST \
     --header 'Content-Type: application/json' 'Accept: application/json' \
     --data '
         {
-            "name": "Jennifer",
-            "location": "Anaheim",
-            "gender": "F"
+            "userid": 2,
+            "username": "Jennifer",
+            "email": "Anaheim",
+            "karma": 1
         }' \
-    http://127.0.0.1:6500/api/v1/user/create
+    http://127.0.0.1:6500/api/v2/user/create
 
 
 curl --request POST \
@@ -31,11 +33,12 @@ curl --request POST \
     --header 'Content-Type: application/json' 'Accept: application/json' \
     --data '
         {
-            "name": "Jason",
-            "location": "Mission Viejo",
-            "gender": "M"
+            "userid": 3,
+            "username": "Jason",
+            "email": "Mission Viejo",
+            "karma": 1
         }' \
-    http://127.0.0.1:6500/api/v1/user/create
+    http://127.0.0.1:6500/api/v2/user/create
 
 
 curl --request POST \
@@ -43,11 +46,12 @@ curl --request POST \
     --header 'Content-Type: application/json' 'Accept: application/json' \
     --data '
         {
-            "name": "Hannah",
-            "location": "Fullerton",
-            "gender": "F"
+            "userid": 4,
+            "username": "Hannah",
+            "email": "Fullerton",
+            "karma": 1
         }' \
-    http://127.0.0.1:6500/api/v1/user/create
+    http://127.0.0.1:6500/api/v2/user/create
 
 
 echo ""
