@@ -1,45 +1,60 @@
-version: 2
+workflows:
+  version: 2
+  build-test-deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
 
 parameters:
   workingdir:
     type: string
-    default: "~/main"
+    default: "~/reddit"
 
+version: 2
 jobs:
 
   build:
+
     docker:
-      - image: circleci/python:3.9
+      - image: circleci/python:3.9.1      # primary container - build job steps are run
     steps:
       - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
-          name: initiate environment
+          name: Build
           command: |
-            echo "$(pwd) == << pipeline.parameters.workingdir >>"
-            python --version
             python -m venv reddit-backend
             source reddit-backend/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
+          paths:
+            - "reddit"
 
   test:
+
     docker:
-      - image: circleci/python:3.9
+      - image: circleci/python:3.9.1
     steps:
       - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "requirements.txt" }}
       - run:
-          name: run tests and coverage
+          name: Testing & Coverage
           command: |
-            export PYTHONPATH=$PWD
-            pip install --upgrade pip
-            pip install --requirement requirements.txt
+            # Reactivate virtual environment
+            source reddit-backend/bin/activate
+            # Remove any coverage data from previous runs
+            coverage erase
+            # Compute coverage -- this generates raw file .coverage
             pytest --cov -v
+            # Show coverage metrics on shell
             coverage report -m
+            # Generate XML report
             coverage xml
+            # Public report to codecov.io
             bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
-
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test
