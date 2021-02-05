@@ -22,7 +22,7 @@ jobs:
             - "reddit-backend"
 
       - run:
-          name: Test
+          name: Testing and Coverage
           command: |
             # Reactivate virtual environment
             source reddit-backend/bin/activate
