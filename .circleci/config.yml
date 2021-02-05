@@ -14,6 +14,7 @@ jobs:
             source reddit-backend/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
+      - run:
           name: Test
           command: |
             # Reactivate virtual environment
