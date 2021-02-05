@@ -49,12 +49,12 @@ jobs:
             # Reactivate virtual environment
             #source reddit-backend/bin/activate
             # Remove any coverage data from previous runs
-            coverage erase
+            python -m coverage erase
             # Compute coverage -- this generates raw file .coverage
             pytest --cov -v
             # Show coverage metrics on shell
-            coverage report -m
+            python -m coverage report -m
             # Generate XML report
-            coverage xml
+            python -m coverage xml
             # Public report to codecov.io
             bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
