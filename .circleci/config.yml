@@ -7,16 +7,13 @@ workflows:
           requires:
             - build
 
-parameters:
-  workingdir:
-    type: string
-    default: "~/reddit"
 
 version: 2
 jobs:
 
   build:
 
+    working_directory: ~/reddit
     docker:
       - image: circleci/python:3.9.1      # primary container - build job steps are run
     steps:
@@ -26,8 +23,8 @@ jobs:
       - run:
           name: Build
           command: |
-            #python -m venv reddit-backend
-            #source reddit-backend/bin/activate
+            python -m venv reddit-backend
+            source reddit-backend/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
       - save_cache:
@@ -37,6 +34,7 @@ jobs:
 
   test:
 
+    working_directory: ~/reddit
     docker:
       - image: circleci/python:3.9.1
     steps:
@@ -47,14 +45,14 @@ jobs:
           name: Testing & Coverage
           command: |
             # Reactivate virtual environment
-            #source reddit-backend/bin/activate
+            source reddit-backend/bin/activate
             # Remove any coverage data from previous runs
-            python3 -m coverage erase
+            coverage erase
             # Compute coverage -- this generates raw file .coverage
             pytest --cov -v
             # Show coverage metrics on shell
-            python3 -m coverage report -m
+            coverage report -m
             # Generate XML report
-            python3 -m coverage xml
+            coverage xml
             # Public report to codecov.io
             bash <(curl -s https://codecov.io/bash) -f tests/coverage/coverage.xml
