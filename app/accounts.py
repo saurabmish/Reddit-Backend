@@ -32,7 +32,7 @@ def upvote_user(username):
                 "email": user["email"],
                 "karma": user["karma"]
             }
-            return jsonify(updated_user), 202
+            return {'message': 'Karma incremented successfully!', 'status': 202}
     return {'message': 'User karma not incremented, user not found ...', 'status': 402}
 
 
@@ -47,7 +47,7 @@ def downvote_user(username):
                 "email": user["email"],
                 "karma": user["karma"]
             }
-            return jsonify(updated_user), 202
+            return {'message': 'Karma decremented successfully!', 'status': 202}
     return {'message': 'User karma not decremented, user not found ...', 'status': 402}
 
 
