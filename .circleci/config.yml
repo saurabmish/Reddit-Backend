@@ -26,8 +26,8 @@ jobs:
       - run:
           name: Build
           command: |
-            python -m venv reddit-backend
-            source reddit-backend/bin/activate
+            #python -m venv reddit-backend
+            #source reddit-backend/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
       - save_cache:
@@ -47,7 +47,7 @@ jobs:
           name: Testing & Coverage
           command: |
             # Reactivate virtual environment
-            source reddit-backend/bin/activate
+            #source reddit-backend/bin/activate
             # Remove any coverage data from previous runs
             coverage erase
             # Compute coverage -- this generates raw file .coverage
