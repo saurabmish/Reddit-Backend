@@ -40,37 +40,36 @@ def retrieve(postid):
     return {'message': "Unable to retrieve post ...", 'status': 402}
 
 
-@app.route('/api/v2/post/retrieve/')
-def recent_community_posts(community=None, top=0):
-    """Multi-parameter route
+@app.route('/api/v2/post/retrieve', methods=['GET'])
+def recent_posts():
+    """Multi-parameter Route
 
     Retrieves *n* most recent posts from a particular community
     curl -i "localhost:6500/api/v2/post/retrieve?community=art&top=5"  
     """
+    community = request.args.get('community', type=str)
+    top       = request.args.get('top', type=int)
+    filtered_posts = []
     if community:
-        filtered_posts = []
-        community = request.args.get('community')
-        top = request.args.get('top')
         for post in posts:
             if post['community'] == community:
                 filtered_posts.append(post)
-        return filtered_posts[:top]
-    return {'message': "Community does not exist ...", 'status': 402}
+    
+    if len(filtered_posts) == 0:
+        return {'message': 'Community does not exist ...', 'status': 402}
+    return {'data': filtered_posts[:top], 'message': "Filtered data based on" + community, 'status': 203} 
 
 
-@app.route('/api/v2/post/retrieve/<string:community>/<int:top>')
-def recent_posts(community=None, top=0):
-    """Multi-query parameter
-
-    Retrieve *n* most recent posts from any community
-    Almost the same as the above route, except 
-    """
+@app.route('/api/v2/post/retrieve/<community>/<top>', methods=['GET'])
+def recent_community_posts(community=None, top=0):
+    community = request.args.get('community')
+    top       = request.args.get('top')
+    filtered_posts = []
     if community:
-        filtered_posts = []
-        community = request.args.get('community')
-        top = request.args.get('top')
         for post in posts:
             if post['community'] == community:
                 filtered_posts.append(post)
-        return filtered_posts[:top]
-    return {'message': "Community does not exist ...", 'status': 402}    
+    
+    if len(filtered_posts) == 0:
+        return {'message': 'Community does not exist ...', 'status': 402}
+    return {'data': jsonify(filtered_posts[:top]), 'message': "Filtered data based on community", 'status': 203} 
