@@ -9,7 +9,15 @@ from the mutual references between these two files.
 '''
 
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
+# Application 
 app = Flask(__name__)
 
-from app import factory, accounts
+# Database
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# URI Format: dialect + driver + "://" + username + ":" + password + "@" + host + ":" + str(port) + "/" + database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://reddit_admin:admin123@localhost:5432/redditdb'
+db = SQLAlchemy(app)
+
+from app import factory, accounts, posts, models, db
