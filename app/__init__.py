@@ -20,4 +20,4 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://reddit_admin:admin123@localhost:5432/redditdb'
 db = SQLAlchemy(app)
 
-from app import factory, accounts, posts, models, db
+from app import factory, accounts, posts, models
