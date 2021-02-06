@@ -77,26 +77,14 @@ def test_retrieve_recent_non_existent_community_posts(client):
     data = json.loads(response.get_data(as_text=True))
     assert data["status"] == 402 and 'Community does not exist' in data["message"]
 
-'''
 def test_retrieve_recent_posts_existing_community(client):
     with open('posts.json') as posts_data:
-        posts_json = posts_data.read()
-
-    client.post('/api/v2/post/create', data=posts_json, content_type='application/json')
-    response = client.get('/api/v2/post/retrieve/tech/2')
-    data = json.load(response.get_data(as_text=True))
-    assert "Filtered data" in data["message"] and data["status"] == 203
-'''
-
-def test_retrieve_recent_posts_existing_community(client):
-    with open('posts.json') as posts_data:
-        posts_json = posts_data.read()
+        posts_json = json.load(posts_data)
     #SMALL CHANGE BELOW
-    client.post('/api/v2/post/create', data=posts_json, content_type='application/json')
+    client.post('/api/v2/post/create', data=json.dumps(posts_json), content_type='application/json')
     response = client.get('/api/v2/post/retrieve/tech/2')
     data = json.load(response.get_data(as_text=True))
     assert "Filtered data" in data["message"] and data["status"] == 203
-
 
 
 def test_retrieve_recent_non_existent_community_posts_v1(client):
