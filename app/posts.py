@@ -36,7 +36,7 @@ def delete(postid):
 def retrieve(postid):
     for post in posts:
         if post["postid"] == postid:
-            return jsonify(post), 201
+            return post, 203
     return {'message': "Unable to retrieve post ...", 'status': 402}
 
 
@@ -61,7 +61,7 @@ def recent_community_posts(community=None, top=0):
 @app.route('/api/v2/post/retrieve/<string:community>/<int:top>')
 def recent_posts(community=None, top=0):
     """Multi-query parameter
-    
+
     Retrieve *n* most recent posts from any community
     Almost the same as the above route, except 
     """
