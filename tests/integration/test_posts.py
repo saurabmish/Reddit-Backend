@@ -39,7 +39,7 @@ def test_delete_non_existing_post(client):
     assert data["status"] == 402  and 'Post could not be deleted because it was not found' in data["message"]
 
 
-def test_retrieve_recent_community_posts(client):
+def test_retrieve_recent_posts_from_existing_community(client):
     post1 = {
         "postid": 2,
         "title": "Heading 2",
@@ -70,7 +70,7 @@ def test_retrieve_recent_community_posts(client):
     assert "Filtered data" in data["message"] and data["status"] == 203
 
 
-def test_retrieve_recent_non_existent_community_posts(client):
+def test_retrieve_recent_posts_from_non_existent_community(client):
     response= client.get('/api/v2/post/retrieve?community=testcomm&top=2')
     data = json.loads(response.get_data(as_text=True))
     assert data["status"] == 402 and 'Community does not exist' in data["message"]
