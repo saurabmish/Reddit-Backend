@@ -77,6 +77,6 @@ def deactivate(username):
 
 
 @app.route('/api/v2/users/all', methods=['GET'])
-def get_all():
+def get_all_accounts():
     """Aids in testing."""
     return jsonify(users), 201
