@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import json
+from flask import json, jsonify
 
 def test_create_post_message(client):
     post1 = {
@@ -47,7 +47,6 @@ def test_retrieve_recent_community_posts(client):
         "published": datetime.utcnow(),
         "community": "tech"
     }
-
     post2 = {
         "postid": 3,
         "title": "Heading 3",
@@ -55,7 +54,6 @@ def test_retrieve_recent_community_posts(client):
         "published": datetime.utcnow(),
         "community": "tech"
     }
-    
     post3 = {
         "postid": 4,
         "title": "Heading 4",
@@ -74,20 +72,5 @@ def test_retrieve_recent_community_posts(client):
 
 def test_retrieve_recent_non_existent_community_posts(client):
     response= client.get('/api/v2/post/retrieve?community=testcomm&top=2')
-    data = json.loads(response.get_data(as_text=True))
-    assert data["status"] == 402 and 'Community does not exist' in data["message"]
-
-def test_retrieve_recent_posts_existing_community(client):
-    with open('posts.json') as posts_data:
-        posts_json = json.load(posts_data)
-    #SMALL CHANGE BELOW
-    client.post('/api/v2/post/create', data=json.dumps(posts_json), content_type='application/json')
-    response = client.get('/api/v2/post/retrieve/tech/2')
-    data = json.load(response.get_data(as_text=True))
-    assert "Filtered data" in data["message"] and data["status"] == 203
-
-
-def test_retrieve_recent_non_existent_community_posts_v1(client):
-    response= client.get('/api/v2/post/retrieve/testcomm/3')
     data = json.loads(response.get_data(as_text=True))
     assert data["status"] == 402 and 'Community does not exist' in data["message"]
