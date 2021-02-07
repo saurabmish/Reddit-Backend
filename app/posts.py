@@ -5,21 +5,8 @@ posts = []
 
 @app.route('/api/v2/post/create', methods=['POST'])
 def create():
-    data = request.get_json()
-    postid = data['postid']
-    title = data['title']
-    text = data['text']
-    published = data['published']
-    community = data['community']
-
-    new_post = {
-        'postid': postid,
-        'title': title,
-        'text': text,
-        'published': published,
-        'community': community
-    }
-    posts.append(new_post)
+    json_data = request.get_json()
+    posts.append(json_data)
     return {'message': "Post created successfully!", 'status': 202}
 
 
@@ -57,4 +44,14 @@ def recent_posts():
     
     if len(filtered_posts) == 0:
         return {'message': 'Community does not exist ...', 'status': 402}
-    return {'data': filtered_posts[:top], 'message': "Filtered data based on" + community, 'status': 203} 
+    return jsonify({
+        'data': filtered_posts[:top],
+        'message': "Filtered data based on community",
+        'status': 203
+    })
+
+
+@app.route('/api/v2/posts/all', methods=['GET'])
+def get_all_posts():
+    """Aids in testing."""
+    return jsonify(posts), 201
