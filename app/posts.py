@@ -58,18 +58,3 @@ def recent_posts():
     if len(filtered_posts) == 0:
         return {'message': 'Community does not exist ...', 'status': 402}
     return {'data': filtered_posts[:top], 'message': "Filtered data based on" + community, 'status': 203} 
-
-
-@app.route('/api/v2/post/retrieve/<community>/<top>', methods=['GET'])
-def recent_community_posts(community=None, top=0):
-    community = request.args.get('community')
-    top       = request.args.get('top')
-    filtered_posts = []
-    if community:
-        for post in posts:
-            if post['community'] == community:
-                filtered_posts.append(post)
-    
-    if len(filtered_posts) == 0:
-        return {'message': 'Community does not exist ...', 'status': 402}
-    return {'data': jsonify(filtered_posts[:top]), 'message': "Filtered data based on community", 'status': 203} 
