@@ -21,5 +21,5 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://reddit_admin:admi
 db = SQLAlchemy(app)
 
 from app.models import user, post
-from app.views import posts, accounts
+from app.routes import posts, accounts
 from app import factory
