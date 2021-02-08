@@ -11,7 +11,7 @@ from the mutual references between these two files.
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-# Application 
+# Application
 app = Flask(__name__)
 
 # Database
@@ -20,4 +20,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://reddit_admin:admin123@localhost:5432/redditdb'
 db = SQLAlchemy(app)
 
-from app import factory, accounts, posts, models
+from app.models import user, post
+from app.views import posts, accounts
+from app import factory
